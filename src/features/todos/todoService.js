@@ -6,16 +6,16 @@ export const fetchTodos = async () => {
 };
 
 export const saveTodo = async (formData) => {
-  const responce = await axios.post("/api/todo", formData);
-  return responce.data;
+  const response = await axios.post("/api/todo", formData);
+  return response.data;
 };
 
 export const deleteTodo = async (_id) => {
-  const responce = axios.delete("/api/todo/" + _id);
-  return responce.data;
+  const response = await axios.delete("/api/todo/" + _id);
+  return response.data;
 };
 
 export const updateTodo = async (formdata) => {
-  const responce = await axios.put("/api/todo/" + formdata._id, formdata);
-  return responce.data;
+  const response = await axios.put("/api/todo/" + formdata._id, formdata);
+  return response.data;
 };

@@ -50,7 +50,7 @@ const todoSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = true;
       state.isError = false;
-      state.allTodos = [action.payload, ...state.allTodos];
+      state.allTodos.push(action.payload); // Add the new todo to the existing array
     });
     builder.addCase(addTodo.rejected, (state, action) => {
       state.isLoading = false;
@@ -93,6 +93,7 @@ const todoSlice = createSlice({
     });
   },
 });
+
 export const { remove, edit } = todoSlice.actions;
 export default todoSlice.reducer;
 
@@ -113,6 +114,7 @@ export const addTodo = createAsyncThunk("ADD/TODOS", async (formData) => {
     console.error(error);
   }
 });
+
 // Remove todos
 export const removeTodo = createAsyncThunk("REMOVE/TODOS", async (_id) => {
   try {
@@ -123,9 +125,9 @@ export const removeTodo = createAsyncThunk("REMOVE/TODOS", async (_id) => {
 });
 
 // Update todos
-export const update = createAsyncThunk("UPDATE/TODOS", async (formdata) => {
+export const update = createAsyncThunk("UPDATE/TODOS", async (formData) => {
   try {
-    return await updateTodo(formdata);
+    return await updateTodo(formData);
   } catch (error) {
     console.error(error);
   }

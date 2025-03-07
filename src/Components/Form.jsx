@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, update } from "../features/todos/todoSlice";
 
@@ -19,12 +18,14 @@ const Form = () => {
   };
 
   useEffect(() => {
-    setTitle(edit.todo.title);
-    setDescription(edit.todo.description);
+    if (edit.isEdit && edit.todo) {
+      setTitle(edit.todo.title);
+      setDescription(edit.todo.description);
+    }
   }, [edit]);
 
   return (
-    <div className="card ">
+    <div className="card">
       <form onSubmit={(e) => handleSubmit(e)}>
         <textarea
           className="w-full p-3 outline-none border-solid border-2 border-zinc-400 my-2"

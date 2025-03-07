@@ -6,4 +6,5 @@ const store = configureStore({
     todos: todoreducer,
   },
 });
+
 export default store;
